@@ -31,7 +31,7 @@ export default function NotFoundPage() {
 
             {token && (
               <ArrowLink
-                href={`/new?slug=${firstPath}`}
+                href={`/?slug=${firstPath}`}
                 className='mt-8'
                 as={PrimaryLink}
               >

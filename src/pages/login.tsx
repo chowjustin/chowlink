@@ -19,7 +19,7 @@ type NewLinkFormData = {
   link: string;
 };
 
-export default function NewLinkPage() {
+export default function LoginPage() {
   const isLoading = useLoadingToast();
 
   //#region  //*=========== Form ===========
@@ -34,7 +34,7 @@ export default function NewLinkPage() {
     toast.promise(
       axios.post<{ token: string }>('/api/login', data).then((res) => {
         localStorage.setItem('@notiolink/app_token', res.data.token);
-        router.replace(`/new`);
+        router.replace(`/`);
       }),
       {
         ...DEFAULT_TOAST_MESSAGE,
@@ -52,7 +52,7 @@ export default function NewLinkPage() {
         <section>
           <div className='layout flex min-h-screen flex-col items-center justify-center py-20'>
             <h1 className='h0'>
-              <Accent>Login to the account</Accent>
+              <Accent>ChowLink</Accent>
             </h1>
 
             <FormProvider {...methods}>

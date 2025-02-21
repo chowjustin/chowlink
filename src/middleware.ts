@@ -40,7 +40,7 @@ export default async function middleware(req: NextRequest) {
     if (url.link) {
       return;
     } else {
-      return NextResponse.redirect('/new?slug=' + path);
+      return NextResponse.redirect('/?slug=' + path);
     }
   }
 

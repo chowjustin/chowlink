@@ -85,7 +85,7 @@ export default function DetailPage() {
               </div>
             </div>
 
-            <ArrowLink href='/new' className='mt-8' as={PrimaryLink}>
+            <ArrowLink href='/' className='mt-8' as={PrimaryLink}>
               <Accent>Shorten another</Accent>
             </ArrowLink>
           </div>
