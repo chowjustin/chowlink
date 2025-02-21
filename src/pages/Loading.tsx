@@ -11,7 +11,7 @@ export default function Loading() {
 
       <main>
         <section className=''>
-          <div className='layout flex min-h-screen flex-col items-center justify-center'>
+          <div className='layout flex h-full flex-col items-center justify-center'>
             <h1 className='text-5xl md:text-7xl'>
               <Accent>Loading</Accent>
             </h1>
