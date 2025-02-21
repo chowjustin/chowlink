@@ -17,6 +17,8 @@ import Seo from '@/components/Seo';
 
 import { DEFAULT_TOAST_MESSAGE } from '@/constant/toast';
 
+import Loading from './Loading';
+
 type NewLinkFormData = {
   slug: string;
   link: string;
@@ -60,9 +62,6 @@ export default function NewLinkPage() {
 
   //#region  //*=========== Form Submit ===========
   const onSubmit: SubmitHandler<NewLinkFormData> = (data) => {
-    if (isAuthenticating)
-      toast.error('Authentication in progress. Please wait...');
-
     const token = getFromLocalStorage('@notiolink/app_token');
 
     toast
@@ -146,66 +145,69 @@ export default function NewLinkPage() {
             >
               Logout
             </Button> */}
-
-            <FormProvider {...methods}>
-              <form
-                onSubmit={handleSubmit(onSubmit)}
-                className='mt-8 w-full max-w-[40vw] max-md:max-w-[80vw]'
-              >
-                <div className='space-y-4'>
-                  <Input
-                    id='link'
-                    label='Full Link'
-                    helperText='Must include http or https'
-                    placeholder='https://google.com'
-                    autoFocus
-                    validation={{
-                      required: 'Link must be filled',
-                      pattern: {
-                        value:
-                          /^(?:https?:\/\/|s?ftps?:\/\/)(?!www | www\.)[A-Za-z0-9_-]+\.+[A-Za-z0-9./%#*&=?_:;-]+$/,
-                        message: 'Please input a valid link',
-                      },
-                    }}
-                  />
-                  <Input
-                    id='slug'
-                    label='Slug'
-                    placeholder='slug'
-                    validation={{
-                      required: 'Slug must be filled',
-                      pattern: {
-                        value: /^\S+$/,
-                        message: 'Cannot include whitespace',
-                      },
-                    }}
-                  />
-                  {/* <Input
+            {isAuthenticating ? (
+              <Loading />
+            ) : (
+              <FormProvider {...methods}>
+                <form
+                  onSubmit={handleSubmit(onSubmit)}
+                  className='mt-8 w-full max-w-[40vw] max-md:max-w-[80vw]'
+                >
+                  <div className='space-y-4'>
+                    <Input
+                      id='link'
+                      label='Full Link'
+                      helperText='Must include http or https'
+                      placeholder='https://google.com'
+                      autoFocus
+                      validation={{
+                        required: 'Link must be filled',
+                        pattern: {
+                          value:
+                            /^(?:https?:\/\/|s?ftps?:\/\/)(?!www | www\.)[A-Za-z0-9_-]+\.+[A-Za-z0-9./%#*&=?_:;-]+$/,
+                          message: 'Please input a valid link',
+                        },
+                      }}
+                    />
+                    <Input
+                      id='slug'
+                      label='Slug'
+                      placeholder='slug'
+                      validation={{
+                        required: 'Slug must be filled',
+                        pattern: {
+                          value: /^\S+$/,
+                          message: 'Cannot include whitespace',
+                        },
+                      }}
+                    />
+                    {/* <Input
                     id='category'
                     label='Category (optional)'
                     placeholder='category'
                     list='category-list'
                     autoComplete='off'
                   /> */}
-                  <datalist id='category-list'>
-                    {categories?.map((category) => (
-                      <option value={category} key={category} />
-                    ))}
-                  </datalist>
-                </div>
+                    <datalist id='category-list'>
+                      {categories?.map((category) => (
+                        <option value={category} key={category} />
+                      ))}
+                    </datalist>
+                  </div>
 
-                <div className='mt-5 flex flex-col'>
-                  <Button
-                    className='w-full justify-center md:ml-auto md:w-auto'
-                    variant='outline'
-                    type='submit'
-                    isLoading={isLoading}
-                  >
-                    Shorten!
-                  </Button>
-                </div>
-              </form>
-            </FormProvider>
+                  <div className='mt-5 flex flex-col'>
+                    <Button
+                      className='w-full justify-center md:ml-auto md:w-auto'
+                      variant='outline'
+                      type='submit'
+                      isLoading={isLoading}
+                    >
+                      Shorten!
+                    </Button>
+                  </div>
+                </form>
+              </FormProvider>
+            )}
             <p className='absolute bottom-4 dark:text-gray-300 '>
               Built using{' '}
               <PrimaryLink href='https://github.com/theodorusclarence/notiolink'>
