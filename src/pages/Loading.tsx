@@ -11,12 +11,12 @@ export default function Loading() {
 
       <main>
         <section className=''>
-          <div className='layout flex min-h-screen flex-col items-center justify-center py-20'>
+          <div className='layout flex min-h-screen flex-col items-center justify-center'>
             <h1 className='text-5xl md:text-7xl'>
               <Accent>Loading</Accent>
             </h1>
             <p className='mt-4 text-gray-300'>
-              Hang on, we are loading the page for you.
+              Loading the page. Please wait...
             </p>
           </div>
         </section>
