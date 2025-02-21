@@ -5,7 +5,8 @@ import { config } from '@/lib/env';
 const defaultMeta = {
   title: config.appName,
   siteName: config.appName,
-  description: 'Self-hostable free branded link shortener built with Notiolink',
+  description:
+    'ChowLink is a self-hostable link shortener that gives you full control over your URLs.',
   type: 'website',
   robots: 'follow, index',
   image: 'https://notiolink.thcl.dev/favicon/og.png',

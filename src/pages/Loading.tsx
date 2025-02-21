@@ -7,7 +7,7 @@ import Seo from '@/components/Seo';
 export default function Loading() {
   return (
     <Layout>
-      <Seo templateTitle='Loading' />
+      <Seo />
 
       <main>
         <section className=''>

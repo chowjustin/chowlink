@@ -127,7 +127,7 @@ export default function NewLinkPage() {
 
   return (
     <Layout>
-      <Seo templateTitle='' />
+      <Seo />
       <main>
         <section>
           <div className='flex min-h-screen w-full flex-col items-center justify-center py-20'>
