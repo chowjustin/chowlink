@@ -38,7 +38,9 @@ export default function NewLinkPage() {
       // Auto login with hardcoded password
       setIsAuthenticating(true);
       axios
-        .post<{ token: string }>('/api/login', { password: 'chow' })
+        .post<{ token: string }>('/api/login', {
+          password: process.env.NEXT_PUBLIC_APP_PASSWORD,
+        })
         .then((res) => {
           localStorage.setItem('@notiolink/app_token', res.data.token);
           setIsAuthenticating(false);
@@ -131,16 +133,6 @@ export default function NewLinkPage() {
       <main>
         <section>
           <div className='flex min-h-screen w-full flex-col items-center justify-center py-20'>
-            {/* <Button
-              className='absolute top-8 right-8'
-              onClick={() => {
-                localStorage.removeItem('@notiolink/app_token');
-                router.push('/');
-              }}
-              variant='outline'
-            >
-              Logout
-            </Button> */}
             {isAuthenticating ? (
               <Loading />
             ) : (
@@ -181,13 +173,6 @@ export default function NewLinkPage() {
                           },
                         }}
                       />
-                      {/* <Input
-                    id='category'
-                    label='Category (optional)'
-                    placeholder='category'
-                    list='category-list'
-                    autoComplete='off'
-                  /> */}
                       <datalist id='category-list'>
                         {categories?.map((category) => (
                           <option value={category} key={category} />
